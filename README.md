@@ -3,8 +3,8 @@
 Create database manually in MySQL:
 
 ```sql
-CREATE DATABASE auth_db;
-USE auth_db;
+CREATE DATABASE auth_project;
+USE auth_project;
 
 CREATE TABLE users (
   id INT AUTO_INCREMENT PRIMARY KEY,
