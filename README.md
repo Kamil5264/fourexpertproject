@@ -15,11 +15,18 @@ CREATE TABLE users (
 );
 
 
+
+
 ## Backend Setup
 
 ```Terminal
 cd backend
 npm install
+PORT=5000
+DB_HOST=localhost
+DB_USER=root
+DB_PASSWORD=
+DB_NAME=auth_project
 
 ## frontend Setup
 cd frontend
@@ -27,10 +34,11 @@ npm install
 npm run dev
 
 
-PORT=5000
-DB_HOST=localhost
-DB_USER=root
-DB_PASSWORD=
-DB_NAME=auth_db
-JWT_SECRET=secret123
+
+JWT_SECRET=super_secret_key
+
+
+
+
+  NEXT_PUBLIC_API_BASE_URL= "http://localhost:5000/api"
 
