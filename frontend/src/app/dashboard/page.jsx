@@ -1,14 +1,30 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect,useState } from "react";
 import { useRouter } from "next/navigation";
+import api from "../lib/api";
+
 
 export default function Dashboard() {
   const router = useRouter();
+    const [error, setError] = useState("");
+
 
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (!token) router.push("/login");
+
+
+   api.get("/dashboard")
+      .then(res => console.log("Dashboard data:", res.data))
+      .catch(err => {
+        if (err.response?.status === 401) {
+          localStorage.removeItem("token");
+          setError("Session expired. Please login again.");
+        }
+      });
   }, []);
+
+  
 
   const logout = () => {
     localStorage.removeItem("token");
@@ -29,6 +45,11 @@ export default function Dashboard() {
         >
           Logout
         </button>
+        {error && (
+        <p className="bg-red-100 text-red-600 p-2 rounded text-center">
+          {error}
+        </p>
+      )}
       </div>
     </div>
   );
